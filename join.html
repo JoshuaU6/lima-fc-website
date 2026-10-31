@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Join Lima FC | Lima FC</title>
+<meta name="description" content="The official home of Lima Football Club: club news, match results, league standings, membership registration and online payment of dues.">
+<meta name="theme-color" content="#123A20">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lima FC">
+<meta property="og:title" content="Lima FC | Lima Football Club">
+<meta property="og:description" content="Club news, match results, league standings, membership and dues.">
+<meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://YOUR-DOMAIN/assets/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+@font-face{font-family:"Big Shoulders";src:url(assets/bs.woff2) format("woff2");font-weight:600 900;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(assets/is.woff2) format("woff2");font-weight:400 700;font-display:swap}
+
+:root{
+  --crest:#000000;
+  --pitch:#123A20;
+  --pitch-alt:#0F3119;
+  --laurel:#1F9A45;
+  --lime:#8DD63C;
+  --gold:#E3AE1F;
+  --gold-deep:#B5841A;
+  --ball:#F5F6F2;
+  /* themeable surfaces */
+  --paper:#F5F6F2;
+  --paper-2:#E9ECE4;
+  --ink:#000000;
+  --muted:#4A584E;
+  --line:#CBD3C7;
+  --link:#167A35;
+  --display:"Big Shoulders","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --body:"Instrument Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0B2213;--paper-2:#0F2C18;--ink:#EEF2EC;--muted:#A8B8AB;--line:#24472E;--link:#8DD63C;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{--paper:#0B2213;--paper-2:#0F2C18;--ink:#EEF2EC;--muted:#A8B8AB;--line:#24472E;--link:#8DD63C;color-scheme:dark}
+
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--crest)}
+img,video{max-width:100%;display:block}
+a{color:var(--link)}
+h1,h2,h3{font-family:var(--display);line-height:.95;margin:0;letter-spacing:.005em}
+h2{font-size:clamp(2.6rem,6vw,4.5rem);font-weight:900;text-wrap:balance}
+h3{text-wrap:balance}
+h3{font-size:1.75rem;font-weight:800}
+p{margin:0 0 1em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:.02em;padding:.7em 1.3em .66em;border-radius:6px;text-decoration:none;border:0;cursor:pointer;line-height:1;transition:transform .15s ease,box-shadow .15s ease}
+.btn-lime{background:var(--lime);color:#000;box-shadow:0 4px 0 #4E8A1A}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4E8A1A}
+.btn-lime:active{transform:translateY(2px);box-shadow:0 2px 0 #4E8A1A}
+.btn-gold{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px var(--gold)}
+.btn-gold:hover{background:rgba(227,174,31,.16)}
+.btn-black{background:#000;color:var(--lime);box-shadow:0 4px 0 var(--gold-deep)}
+.btn-black:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--gold-deep)}
+.btn-black:active{transform:translateY(2px);box-shadow:0 2px 0 var(--gold-deep)}
+.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+
+/* ===== nav ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .25s ease,box-shadow .25s ease}
+.nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(227,174,31,.45)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.brand img{width:48px;height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.brand span{font-family:var(--display);font-weight:900;font-size:1.65rem;letter-spacing:.02em}
+.links{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.links a{color:#E8EDE6;text-decoration:none;font-weight:600;font-size:.95rem;padding:8px 11px;border-radius:5px}
+.links a:hover{color:var(--lime)}
+.links a.join{background:var(--lime);color:#000;margin-left:6px}
+.links a.join:hover{color:#000;background:#A2E356}
+.menu-btn{display:none;background:none;border:0;color:#fff;width:46px;height:46px;cursor:pointer;padding:10px}
+.menu-btn span{display:block;height:2px;background:currentColor;margin:6px 0;transition:transform .2s}
+@media (max-width:1020px){
+  .menu-btn{display:block}
+  .links{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:0;right:0;bottom:0;background:#000;flex-direction:column;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));gap:0;transform:translateX(100%);transition:transform .28s ease;overflow:auto}
+  .links.open{transform:none}
+  .links a{display:block;font-family:var(--display);font-size:2rem;font-weight:800;padding:12px 4px;border-bottom:1px solid #1f2a22}
+  .links a.join{margin:16px 0 0;text-align:center;border:0}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+}
+
+/* ===== hero ===== */
+.hero{position:relative;min-height:100svh;min-height:100vh;color:#fff;overflow:hidden;background:#000;display:flex;flex-direction:column}
+@supports (height:100svh){.hero{min-height:100svh}}
+.hero-media{position:absolute;inset:0}
+.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease}
+.hero-media video.on{opacity:1}
+.hero-media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.32) 45%,rgba(0,0,0,0) 75%),
+  linear-gradient(0deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,0) 30%),
+  linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 18%)}
+.hero-body{position:relative;flex:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:24px;padding-top:110px;padding-bottom:40px}
+.hero h1{font-size:clamp(3.6rem,10.5vw,9.2rem);font-weight:900;line-height:.84;letter-spacing:-.005em;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.hero h1 .l2{display:block;color:rgba(0,0,0,.38);-webkit-text-stroke:2px var(--gold);text-stroke:2px var(--gold)}
+.hero .lede{text-shadow:0 2px 12px rgba(0,0,0,.75);font-size:clamp(1.1rem,1.6vw,1.3rem);max-width:36ch;text-wrap:pretty;margin:26px 0 30px;color:#E7ECE5}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+
+.crest-stage{perspective:1100px;display:grid;place-items:center;position:relative}
+.crest-3d{position:relative;width:min(440px,80%);aspect-ratio:1;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.crest-3d img{width:100%;height:100%;position:absolute;inset:0;filter:drop-shadow(0 30px 30px rgba(0,0,0,.65)) drop-shadow(0 0 1px rgba(227,174,31,.9));transform:translateZ(60px)}
+.crest-3d .halo{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(141,214,60,.35),rgba(141,214,60,0) 65%);transform:translateZ(-40px)}
+.crest-3d .spot{position:absolute;left:12%;right:12%;bottom:-10%;height:14%;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),rgba(0,0,0,0) 70%);transform:rotateX(80deg) translateZ(-60px)}
+.crest-stage.intro .crest-3d{animation:crestIn 1.4s cubic-bezier(.16,.9,.25,1.15) both .2s}
+@keyframes crestIn{0%{opacity:0;transform:translateY(-60px) rotateX(55deg) rotateY(-25deg) scale(.82)}60%{opacity:1}100%{opacity:1;transform:none}}
+
+.board{position:relative;margin-bottom:max(26px,env(safe-area-inset-bottom,0px))}
+.board-in{display:grid;grid-template-columns:1fr 1.25fr auto;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:2px solid var(--gold);box-shadow:0 0 0 5px rgba(0,0,0,.85);border-radius:10px;overflow:hidden}
+.board-cell{padding:14px 20px;display:flex;align-items:center;gap:16px;min-width:0}
+.board-cell+.board-cell{border-left:1px solid rgba(227,174,31,.4)}
+.board-cell .k{font-size:.85rem;color:#B9C6BC;white-space:nowrap}
+.board-cell .v{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.board-cell .v b{color:var(--lime);font-weight:900}
+.reel{display:flex;align-items:center;gap:10px}
+.reel button{background:none;border:0;cursor:pointer;color:#fff;padding:6px}
+.reel .dot{width:30px;height:4px;padding:0;border-radius:2px;background:rgba(255,255,255,.35);position:relative;overflow:hidden}
+.reel .dot i{position:absolute;inset:0;background:var(--lime);transform-origin:left;transform:scaleX(0)}
+.reel .dot.on i{transform:scaleX(var(--p,0))}
+.reel .pp svg{width:22px;height:22px;display:block}
+
+@media (max-width:860px){
+  .hero-media::after{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,.8) 100%)}
+  .hero-body{grid-template-columns:1fr;padding-top:96px;text-align:left}
+  .crest-stage{order:-1;justify-items:start}
+  .crest-3d{width:150px}
+  .board-in{grid-template-columns:1fr 1fr}
+  .board-cell.reel-cell{grid-column:1/-1;border-left:0;border-top:1px solid rgba(227,174,31,.4);justify-content:space-between}
+  .board-cell{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px}
+  .board-cell .v{font-size:1.2rem;white-space:normal}
+}
+
+/* ===== club / welcome ===== */
+.stripes{background:repeating-linear-gradient(90deg,var(--pitch) 0 110px,var(--pitch-alt) 110px 220px);color:#fff}
+.welcome{padding:120px 0 130px;overflow:hidden}
+.welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.welcome h2{margin-bottom:28px}
+.welcome p{color:#DCE5DA;max-width:58ch}
+.welcome .sign{display:flex;align-items:center;gap:14px;margin-top:30px}
+.welcome .sign img{width:54px;height:54px}
+.welcome .sign b{display:block;font-family:var(--display);font-size:1.45rem;font-weight:800;line-height:1}
+.welcome .sign span{font-size:.92rem;color:#B9C6BC}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-top:2px solid var(--gold)}
+.facts div{padding:18px 18px 0 0}
+.facts dt{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--lime);line-height:1}
+.facts dd{margin:6px 0 0;font-size:.95rem;color:#DCE5DA}
+.stack{position:relative;height:560px;perspective:1300px}
+.stack figure{position:absolute;margin:0;width:62%;aspect-ratio:9/16;border-radius:10px;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 0 6px #000,0 40px 60px -20px rgba(0,0,0,.7);transition:transform .2s linear;background:#000}
+.stack figure img,.stack figure video{width:100%;height:100%;object-fit:cover}
+.stack .f1{left:0;top:30px;transform:rotateY(var(--ry1,18deg)) rotateZ(-3deg) translateZ(-60px)}
+.stack .f2{right:0;top:0;transform:rotateY(var(--ry2,-14deg)) rotateZ(2deg) translateZ(40px)}
+.stack figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:.88rem;color:#E7ECE5}
+@media (max-width:860px){.welcome{padding:80px 0}.welcome-grid{grid-template-columns:1fr;gap:40px}.stack{height:420px}.stack figure{width:56%}.facts{grid-template-columns:1fr 1fr 1fr}}
+
+/* ===== news ===== */
+.news{padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head p{color:var(--muted);max-width:44ch;margin:0}
+.news-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:44px}
+.lead-story img,.lead-story video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:3px solid var(--gold);box-shadow:0 0 0 6px #000}
+.lead-story .meta,.story .meta{font-size:.9rem;color:var(--muted);margin:22px 0 8px;display:flex;gap:12px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:30px;background:var(--lime);color:#000}
+.tag.gold{background:var(--gold)}
+.tag.green{background:var(--laurel);color:#fff}
+.lead-story h3{font-size:clamp(2rem,3.4vw,2.9rem)}
+.lead-story p{margin-top:14px;color:var(--muted);max-width:60ch}
+.story-list{list-style:none;margin:0;padding:0}
+.story{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.story:first-child{border-top:0;padding-top:0}
+.story .thumb{display:block;width:110px;aspect-ratio:1;object-fit:cover;border-radius:8px}
+.story .thumb.blank{display:grid;place-items:center;background:#000;border:2px solid var(--gold)}
+.story .thumb.blank img{width:62%}
+.story .meta{margin:0 0 6px}
+.story h3{font-size:1.55rem;line-height:1}
+.story p{font-size:.96rem;color:var(--muted);margin:8px 0 0}
+details.more summary{cursor:pointer;color:var(--link);font-weight:600;font-size:.95rem;margin-top:8px;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more[open] summary{margin-bottom:8px}
+@media (max-width:860px){.news{padding:80px 0}.news-grid{grid-template-columns:1fr;gap:50px}}
+
+/* ===== matchday (results + table) ===== */
+.matchday{position:relative;background:#000;color:#fff;padding:110px 0 120px;overflow:hidden;isolation:isolate}
+.matchday::before{content:"";position:absolute;left:-30%;right:-30%;bottom:-8%;height:85%;z-index:-1;background:
+  repeating-linear-gradient(90deg,#14431F 0 120px,#103819 120px 240px);
+  transform:perspective(700px) rotateX(62deg);transform-origin:bottom center;
+  -webkit-mask-image:linear-gradient(0deg,#000 30%,transparent 95%);mask-image:linear-gradient(0deg,#000 30%,transparent 95%)}
+.matchday::after{content:"";position:absolute;left:50%;bottom:-8%;width:1px;height:85%;z-index:-1;background:rgba(255,255,255,.25);transform:perspective(700px) rotateX(62deg);transform-origin:bottom center}
+.matchday .sec-head p{color:#B9C6BC}
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:110px}
+.score{background:#000;border:2px solid var(--gold);box-shadow:0 0 0 5px #000,0 0 0 6px rgba(227,174,31,.25),0 30px 40px -20px rgba(0,0,0,.9);border-radius:10px;padding:16px 18px 18px}
+.score .top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#B9C6BC;margin-bottom:12px}
+.res{font-family:var(--display);font-weight:900;font-size:1.05rem;width:28px;height:28px;border-radius:5px;display:grid;place-items:center;line-height:1}
+.res.W{background:var(--lime);color:#000}.res.D{background:var(--gold);color:#000}.res.L{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff}
+.side{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.side+.side{margin-top:6px}
+.side .t{font-family:var(--display);font-weight:800;font-size:1.45rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side.us .t{color:var(--lime)}
+.side .g{font-family:var(--display);font-weight:900;font-size:2.3rem;line-height:1;min-width:1ch;text-align:right;font-variant-numeric:tabular-nums}
+.score .comp{margin-top:14px;padding-top:10px;border-top:1px solid #26302a;font-size:.85rem;color:#B9C6BC}
+@media (max-width:1020px){.results{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.results{grid-template-columns:1fr;margin-bottom:80px}.matchday{padding:80px 0}}
+
+.tabs{display:inline-flex;background:#111a14;border:1px solid #2b3a2f;border-radius:8px;padding:4px;gap:4px;margin-bottom:22px}
+.tabs button{background:none;border:0;color:#DCE5DA;font:600 .95rem var(--body);padding:8px 14px;border-radius:5px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--gold);color:#000}
+.table-board{background:rgba(0,0,0,.82);border:2px solid var(--gold);box-shadow:0 0 0 6px #000,0 50px 80px -30px rgba(0,0,0,.95);border-radius:12px;overflow:hidden;transform:perspective(1600px) rotateX(var(--tilt,6deg));transform-origin:center bottom;transition:transform .4s ease}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:560px}
+caption{text-align:left;padding:16px 20px;font-family:var(--display);font-weight:800;font-size:1.5rem;color:#fff;border-bottom:1px solid #26302a}
+caption small{font-family:var(--body);font-weight:400;font-size:.88rem;color:#B9C6BC;margin-left:10px}
+th,td{padding:12px 10px;text-align:center}
+th{font-size:.82rem;font-weight:600;color:#B9C6BC;border-bottom:1px solid #26302a}
+td{border-bottom:1px solid #1b241e}
+th.club,td.club{text-align:left}
+td.pos{font-family:var(--display);font-weight:800;font-size:1.25rem;width:48px}
+td.club{font-weight:600}
+tbody th{font-size:inherit;font-weight:600;color:inherit;text-align:left;padding:12px 10px;border-bottom:1px solid #1b241e}
+tr.us th{background:var(--lime);color:#000;font-weight:700;border-bottom-color:var(--lime)}
+td.pts{font-family:var(--display);font-weight:900;font-size:1.35rem}
+tr.us td{background:var(--lime);color:#000;border-bottom-color:var(--lime)}
+tr.us td.club{font-weight:700}
+.form{display:inline-flex;gap:3px}
+.form i{font-style:normal;font-family:var(--display);font-weight:900;font-size:.8rem;width:19px;height:19px;border-radius:3px;display:grid;place-items:center}
+.form i.W{background:var(--lime);color:#000}.form i.D{background:var(--gold);color:#000}.form i.L{background:#3a463e;color:#fff}
+tr.us .form i.W{background:#000;color:var(--lime)}
+.key{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;color:#B9C6BC;margin-top:18px}
+@media (max-width:700px){.hide-sm{display:none}table{min-width:0}.table-board{--tilt:0deg}th,td,tbody th{padding:10px 6px}}
+
+.tour-sub{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--lime);margin-top:10px!important}
+.tour-teams{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:80px}
+.tour-teams div{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #2b3a2f;border-radius:10px;background:rgba(0,0,0,.6)}
+.tour-teams img{width:54px;height:54px;object-fit:contain}
+.tour-teams b{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1}
+.sub-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 22px}
+.sub-head h3{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900}
+.sub-head span{color:#B9C6BC;font-size:.95rem}
+.side .t{display:flex;align-items:center;gap:10px}
+.side .t img{width:34px;height:34px;object-fit:contain;flex:none}
+.side.win .t{color:var(--lime)}
+.badge-cell{display:inline-flex;align-items:center;gap:10px}
+.badge-cell img{width:30px;height:30px;object-fit:contain}
+.fixtures{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fixtures li{background:rgba(0,0,0,.8);border:1px solid #2b3a2f;border-radius:10px;padding:16px 18px}
+.fixtures li.next{border:2px solid var(--gold);box-shadow:0 0 0 4px #000}
+.fixtures .md{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.fixtures .md b{font-family:var(--display);font-weight:900;font-size:1.5rem}
+.fixtures .md span{font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:30px;background:#26302a;color:#DCE5DA}
+.fixtures li.next .md span{background:var(--gold);color:#000}
+.fixtures li.played .md span{background:var(--lime);color:#000}
+.fx{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:8px 0;border-top:1px solid #1f2a22;font-size:.95rem}
+.fx time{color:#B9C6BC;font-variant-numeric:tabular-nums}
+.fx b{font-weight:600}.fx .sc{font-family:var(--display);font-weight:900;color:var(--lime);font-size:1.1rem;margin:0 4px}
+.matchday .results{grid-template-columns:repeat(2,1fr);margin-bottom:80px}
+.key{margin-bottom:80px}
+@media (max-width:1020px){.fixtures{grid-template-columns:1fr 1fr}.tour-teams{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.fixtures{grid-template-columns:1fr}.matchday .results{grid-template-columns:1fr}.tour-teams{gap:10px;margin-bottom:56px}.tour-teams div{padding:10px}.tour-teams img{width:40px;height:40px}.tour-teams b{font-size:1.15rem}}
+
+/* ===== gallery ===== */
+.gallery{padding:110px 0;background:var(--paper-2)}
+.gal-tools{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.gal-tools[hidden]{display:none}
+.gal-tools .note{color:var(--muted)}
+.gal-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;grid-auto-flow:dense;gap:12px}
+.gal-grid li{position:relative;border-radius:8px;overflow:hidden;background:#000}
+.gal-grid li.tall{grid-row:span 2}
+.gal-grid li.wide{grid-column:span 2}
+.gal-grid button.open{all:unset;cursor:zoom-in;display:block;width:100%;height:100%}
+.gal-grid button.open:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.gal-grid img,.gal-grid video{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.gal-grid li:hover img,.gal-grid li:hover video{transform:scale(1.03)}
+.gal-grid .del{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);color:#fff;border:1px solid var(--gold);border-radius:5px;font:600 .8rem var(--body);padding:4px 9px;cursor:pointer}
+.lightbox{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:#fff}
+.lightbox::backdrop{background:rgba(0,0,0,.92)}
+.lightbox[open]{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.lightbox figure{margin:0;display:grid;place-items:center;align-content:center;height:100vh;padding:60px 0}
+.lightbox img,.lightbox video{max-height:calc(100vh - 140px);max-width:100%;object-fit:contain;border:2px solid var(--gold);border-radius:6px}
+.lightbox figcaption{margin-top:12px;color:#DCE5DA;font-size:.95rem}
+.lb-nav,.lb-close{background:rgba(0,0,0,.6);border:1px solid #3a463e;color:#fff;font-size:2.2rem;line-height:1;width:52px;height:52px;border-radius:50%;cursor:pointer;margin:0 14px}
+.lb-close{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:6px;font-size:1.8rem;z-index:2}
+@media (max-width:860px){.gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.gallery{padding:80px 0}.lb-nav{width:42px;height:42px;margin:0 4px}}
+
+/* ===== leadership ===== */
+.leaders{padding:110px 0}
+.exec{display:grid;grid-template-columns:repeat(3,1fr);gap:46px 34px;list-style:none;margin:0;padding:0}
+.exec li{display:grid;grid-template-columns:86px 1fr;gap:18px;align-items:start}
+.shield{width:86px;aspect-ratio:86/98;position:relative;filter:drop-shadow(0 10px 12px rgba(0,0,0,.28))}
+.shield::before,.shield::after{content:"";position:absolute;clip-path:polygon(50% 0,100% 12%,100% 52%,92% 74%,50% 100%,8% 74%,0 52%,0 12%)}
+.shield::before{inset:0;background:#000}
+.shield::after{inset:7px;background:var(--gold)}
+.shield span{position:absolute;inset:11px;clip-path:polygon(50% 0,100% 12%,100% 52%,92% 74%,50% 100%,8% 74%,0 52%,0 12%);background:#000;z-index:1;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:1.9rem;color:var(--lime);padding-bottom:10%}
+.exec .role{font-size:.9rem;font-weight:700;color:var(--link)}
+.exec h3{font-size:1.7rem;margin:2px 0 6px}
+.exec p{font-size:.95rem;color:var(--muted);margin:0}
+.exec li.lead-row{grid-column:span 3;grid-template-columns:120px 1fr;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.exec li.lead-row .shield{width:120px}
+.exec li.lead-row .shield span{font-size:2.6rem}
+.exec li.lead-row h3{font-size:2.4rem}
+@media (max-width:960px){.exec{grid-template-columns:1fr 1fr}.exec li.lead-row{grid-column:span 2}}
+@media (max-width:600px){.exec{grid-template-columns:1fr;gap:30px}.exec li.lead-row{grid-column:auto;grid-template-columns:86px 1fr}.exec li.lead-row .shield{width:86px}.leaders{padding:80px 0}}
+
+/* ===== join ===== */
+.join{background:var(--lime);color:#000;padding:110px 0;position:relative;overflow:hidden}
+.join::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 110px,transparent 110px 220px);pointer-events:none}
+.join-grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.join .intro p{max-width:44ch;font-size:1.1rem}
+.tiers{list-style:none;margin:30px 0 0;padding:0;border-top:2px solid #000}
+.tiers li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.25)}
+.tiers b{font-family:var(--display);font-size:1.5rem;font-weight:800;line-height:1.1;display:block}
+.tiers span{font-size:.92rem}
+.tiers .fee{font-family:var(--display);font-weight:900;font-size:1.5rem;white-space:nowrap;text-align:right;line-height:1.1}
+.tiers .fee small{display:block;font-family:var(--body);font-weight:500;font-size:.8rem}
+.panel{color-scheme:dark;background:#000;color:#fff;border:2px solid var(--gold);box-shadow:0 0 0 6px #000,0 40px 70px -30px rgba(0,0,0,.6);border-radius:12px;padding:32px}
+.panel h3{font-size:2rem;margin-bottom:6px}
+.panel .sub{color:#B9C6BC;font-size:.95rem;margin-bottom:22px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 16px}
+.fgrid .full{grid-column:1/-1}
+.field label,.field legend{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px;color:#E7ECE5}
+.field .opt{font-weight:400;color:#93A397}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:1rem;color:#fff;background:#0E1610;border:1px solid #34443a;border-radius:6px;padding:11px 12px;min-height:46px}
+.field input:focus,.field select:focus{border-color:var(--gold);outline:2px solid var(--gold);outline-offset:0}
+.field input[aria-invalid="true"]{border-color:#FF8A7A}
+.field .err{color:#FF9C8F;font-size:.85rem;margin-top:4px;min-height:0}
+fieldset{border:0;padding:0;margin:0}
+.choice{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.choice label{margin:0;cursor:pointer}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice span{display:block;text-align:center;padding:10px 6px;border:1px solid #34443a;border-radius:6px;font-weight:600;font-size:.92rem;background:#0E1610}
+.choice input:checked+span{background:var(--lime);color:#000;border-color:var(--lime)}
+.choice input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;color:#DCE5DA}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--lime);flex:none}
+.check a{color:var(--lime)}
+.form-actions{margin-top:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.note{font-size:.85rem;color:#93A397}
+.done{display:none;text-align:left}
+.done.show{display:block}
+.done h3{color:var(--lime)}
+.done .btn{margin-top:8px}
+@media (max-width:900px){.join-grid{grid-template-columns:1fr;gap:40px}.join{padding:80px 0}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}.choice{grid-template-columns:1fr 1fr}.panel{padding:22px}}
+
+/* ===== dues ===== */
+.dues{padding:110px 0}
+.dues-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--gold);box-shadow:0 0 0 6px #000;border-radius:12px;overflow:hidden;background:var(--paper)}
+.step{padding:28px;min-width:0}
+.step+.step{border-left:1px solid var(--line)}
+.step .n{font-family:var(--display);font-weight:900;font-size:3rem;line-height:.8;color:var(--gold-deep)}
+.step h3{margin:10px 0 16px}
+.step .field label{color:var(--ink)}
+.step .field input,.step .field select{background:var(--paper-2);color:var(--ink);border-color:var(--line)}
+.step .choice span{background:var(--paper-2);border-color:var(--line);color:var(--ink)}
+.step .choice{grid-template-columns:1fr 1fr 1fr}
+.step .stack-f{display:grid;gap:14px}
+.total{background:#000;color:#fff;border-radius:8px;padding:16px 18px;margin-bottom:16px}
+.total .k{font-size:.88rem;color:#B9C6BC}
+.total .amt{font-family:var(--display);font-weight:900;font-size:2.8rem;line-height:1;color:var(--lime)}
+.total .for{font-size:.9rem;color:#DCE5DA;margin-top:4px}
+.paybtns{display:grid;gap:12px}
+.paybtns .btn{justify-content:center}
+.bank{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;font-size:.95rem}
+.bank dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0 0}
+.bank dt{color:var(--muted)}
+.bank dd{margin:0;font-weight:600}
+.copy{background:none;border:0;color:var(--link);font:600 .85rem var(--body);cursor:pointer;padding:0 0 0 8px}
+.msg{font-size:.92rem;margin-top:12px;padding:10px 12px;border-radius:6px;background:var(--paper-2);display:none}
+.msg.show{display:block}
+@media (max-width:900px){.dues-grid{grid-template-columns:1fr}.step+.step{border-left:0;border-top:1px solid var(--line)}.dues{padding:80px 0}}
+
+/* ===== policy ===== */
+.policy{padding:110px 0}
+.policy-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.policy .intro{position:sticky;top:110px;align-self:start}
+.policy .intro p{color:#DCE5DA;max-width:40ch}
+.intro h2,.sec-head h2{margin-bottom:0}
+.policy .intro h2,.join .intro h2{margin-bottom:22px}
+.policy .intro .stamp{display:flex;gap:12px;align-items:center;margin-top:24px;font-size:.92rem;color:#B9C6BC}
+.acc{border-top:2px solid var(--gold)}
+.acc details{border-bottom:1px solid rgba(255,255,255,.18)}
+.acc summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 2px;font-family:var(--display);font-weight:800;font-size:1.65rem;line-height:1.05}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"";flex:none;width:14px;height:14px;border-right:3px solid var(--lime);border-bottom:3px solid var(--lime);transform:rotate(45deg) translate(-3px,-3px);transition:transform .2s ease}
+.acc details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+.acc .body{padding:0 2px 22px;color:#DCE5DA;max-width:66ch}
+.acc .body ul{margin:0;padding-left:1.15em}
+.acc .body li{margin-bottom:.45em}
+@media (max-width:900px){.policy .intro{position:static}.policy-grid{grid-template-columns:1fr;gap:30px}.policy{padding:80px 0}}
+
+/* ===== dedicated pages ===== */
+.page-hero{padding:calc(72px + env(safe-area-inset-top,0px) + 56px) 0 56px;border-bottom:3px solid var(--gold);overflow:hidden}
+.page-hero-in{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.page-hero h1{font-size:clamp(3rem,9vw,6.5rem);font-weight:900;line-height:.86;color:#fff;text-wrap:balance}
+.page-hero p{color:#DCE5DA;max-width:52ch;margin:18px 0 0;font-size:1.1rem}
+.crumbs{display:flex;gap:10px;align-items:center;font-size:.92rem;color:#B9C6BC;margin-bottom:18px}
+.crumbs a{color:var(--lime);text-decoration:none;font-weight:600;padding:6px 0}
+.page-crest{width:clamp(84px,14vw,150px);height:auto;filter:drop-shadow(0 18px 20px rgba(0,0,0,.55));transform:perspective(600px) rotateY(-14deg) rotateX(6deg)}
+.page-view .welcome,.page-view .news,.page-view .matchday,.page-view .gallery,.page-view .leaders,.page-view .join,.page-view .dues,.page-view .policy{padding-top:64px}
+.page-view #pageSlot section > .wrap > .sec-head:first-child{display:none}
+.page-view .join .intro h2,.page-view .policy .intro h2{display:none}
+.page-view .policy .intro > p{display:none}
+.page-view .policy .intro .stamp{margin-top:0}
+.page-view .policy .intro{position:static}
+.extra{padding:72px 0}
+.extra h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:22px}
+.extra.light{background:var(--paper)}
+.extra.alt{background:var(--paper-2)}
+.extra p{color:var(--muted);max-width:60ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:22px}
+.extra.light .card{background:var(--paper-2)}
+.card h3{font-size:1.6rem;margin-bottom:8px}
+.card p{margin:0;font-size:.98rem}
+.card .big{font-family:var(--display);font-weight:900;font-size:2.4rem;color:var(--link);line-height:1;margin-bottom:6px}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.steps li{counter-increment:st;background:var(--paper-2);border-radius:10px;padding:20px;border-top:4px solid var(--gold)}
+.steps li::before{content:counter(st);display:block;font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:1;color:var(--gold-deep);margin-bottom:8px}
+.steps b{display:block;font-family:var(--display);font-size:1.4rem;line-height:1.05;margin-bottom:6px}
+.steps span{color:var(--muted);font-size:.96rem}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font-weight:700;font-size:1.08rem;min-height:48px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--display);font-size:1.8rem;color:var(--link);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 18px}
+.ig{background:#000;color:#fff;padding:56px 0;border-top:3px solid var(--gold)}
+.ig-in{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.ig h2{font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin:0}
+.ig p{color:#DCE5DA;margin:8px 0 0}
+.ig .handle{font-family:var(--display);font-weight:800;color:var(--lime);font-size:1.5rem}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact-grid a.card{text-decoration:none;color:inherit;display:block;min-height:48px}
+.contact-grid a.card:hover{border-color:var(--gold)}
+.contact-grid .k{font-size:.9rem;color:var(--muted)}
+.contact-grid .v{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--ink);line-height:1.1;margin-top:4px;overflow-wrap:anywhere}
+.full-news{list-style:none;margin:0;padding:0;display:grid;gap:56px}
+.full-news article{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:start}
+.full-news .media img,.full-news .media video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:3px solid var(--gold);box-shadow:0 0 0 6px #000;background:#000}
+.full-news .meta{font-size:.9rem;color:var(--muted);margin:0 0 10px;display:flex;gap:12px;flex-wrap:wrap}
+.full-news h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:14px}
+.full-news p{color:var(--muted)}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:44px 0 60px}
+.pager a{display:block;text-decoration:none;color:var(--ink);background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:16px 18px;min-height:56px}
+.pager a:hover{border-color:var(--gold)}
+.pager .k{font-size:.85rem;color:var(--muted);display:block}
+.pager .v{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1}
+.pager .next{text-align:right}
+.links a[aria-current="page"]{color:var(--lime);box-shadow:inset 0 -2px 0 var(--lime);border-radius:0}
+.links a.join[aria-current="page"]{color:#000;box-shadow:inset 0 0 0 2px #000}
+body.on-page .nav{background:rgba(0,0,0,.92);box-shadow:0 1px 0 rgba(227,174,31,.45)}
+@media (max-width:900px){
+  .cards,.contact-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .full-news article{grid-template-columns:1fr;gap:18px}
+  .extra{padding:56px 0}
+  .page-hero{padding:calc(72px + env(safe-area-inset-top,0px) + 32px) 0 36px}
+  .page-view .welcome,.page-view .news,.page-view .matchday,.page-view .gallery,.page-view .leaders,.page-view .join,.page-view .dues,.page-view .policy{padding-top:44px}
+}
+@media (max-width:560px){
+  .steps{grid-template-columns:1fr}
+  .pager{grid-template-columns:1fr}
+  .pager .next{text-align:left}
+  .ig .btn{width:100%;justify-content:center}
+  .page-hero-in{grid-template-columns:1fr auto;gap:14px}
+}
+
+/* ===== footer ===== */
+footer{background:#000;color:#DCE5DA;padding:70px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:3px solid var(--gold)}
+.foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.foot .brand img{width:76px;height:76px}
+.foot .brand span{font-size:2.2rem}
+.foot h4{font-family:var(--display);font-weight:800;font-size:1.3rem;margin:0 0 12px;color:#fff}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin-bottom:8px}
+.foot a{color:#DCE5DA;text-decoration:none}
+.foot a:hover{color:var(--lime)}
+.legal{margin-top:50px;padding-top:20px;border-top:1px solid #1f2a22;font-size:.88rem;color:#93A397;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:#000;color:#fff;border:2px solid var(--gold);border-radius:8px;padding:12px 18px;z-index:80;transition:transform .3s ease;font-size:.95rem;max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .crest-3d{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html" data-route="home" aria-label="Lima FC home"><img src="assets/crest-160.webp" alt="" width="48" height="48"><span>Lima FC</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <ul class="links" id="links">
+      <li><a href="club.html" data-route="club">The club</a></li>
+      <li><a href="news.html" data-route="news">News</a></li>
+      <li><a href="tournament.html" data-route="tournament">Tournament</a></li>
+      <li><a href="gallery.html" data-route="gallery">Gallery</a></li>
+      <li><a href="leadership.html" data-route="leadership">Leadership</a></li>
+      <li><a href="dues.html" data-route="dues">Pay dues</a></li>
+      <li><a href="policy.html" data-route="policy">Lima policy</a></li>
+      <li><a href="join.html" data-route="join" class="join">Join Lima FC</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-media" id="heroMedia" aria-hidden="true">
+    <video class="on" muted playsinline preload="auto" poster="assets/poster.webp" data-src="assets/hero-match.mp4" style="object-position:50% 60%"></video>
+    <video muted playsinline preload="none" data-src="assets/hero-warmup.mp4" style="object-position:50% 62%"></video>
+    <video muted playsinline preload="none" data-src="assets/hero-fans.mp4" style="object-position:50% 52%"></video>
+  </div>
+  <div class="wrap hero-body">
+    <div>
+      <h1>Lima<span class="l2">Football Club</span></h1>
+      <p class="lede">Welcome to Lima FC. We train together, play to win and look after each other, on the pitch and off it.</p>
+      <div class="ctas">
+        <a class="btn btn-lime" href="#home-join">Become a member</a>
+        <a class="btn btn-gold" href="#home-dues">Pay your dues</a>
+      </div>
+    </div>
+    <div class="crest-stage intro" id="crestStage">
+      <div class="crest-3d" id="crest3d">
+        <div class="halo"></div>
+        <div class="spot"></div>
+        <img src="assets/crest-720.webp" alt="Lima Football Club crest" width="720" height="720">
+      </div>
+    </div>
+  </div>
+  <div class="wrap board">
+    <div class="board-in">
+      <div class="board-cell"><span class="k">Latest result</span><span class="v" id="lastMatch"></span></div>
+      <div class="board-cell"><span class="k">Next match</span><span class="v" id="nextMatch"></span></div>
+      <div class="board-cell reel-cell">
+        <span class="k" id="clipLabel">Matchday</span>
+        <div class="reel" id="reel">
+          <button class="pp" id="pp" aria-label="Pause background video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="welcome stripes" id="home-club" aria-labelledby="club-h">
+  <div class="wrap club-grid">
+    <div>
+      <h2 id="club-h">Welcome to Lima FC</h2>
+      <p>Lima Football Club is a community of players, coaches and supporters who share one thing: a love for the game and for each other. Whether you’re lacing up for training on a weekday evening or cheering from the stands on matchday, you belong here.</p>
+      <p>We train together every Thursday evening, run our own end-of-year tournament, and keep the club honest, open and well-run through an elected executive committee. Every member has a voice, and every member’s dues go straight back into the club.</p>
+      <p>If you’re new, come down on a Thursday between 5 and 7 pm, say hello to the committee, and register when you’re ready. We’d love to have you.</p>
+      <div class="sign"><img src="assets/crest-160.webp" alt="" width="54" height="54"><div><b id="chairName"></b><span id="chairRole"></span></div></div>
+      <dl class="facts">
+        <div><dt>Train</dt><dd>Every Thursday, 5–7 pm</dd></div>
+        <div><dt>Compete</dt><dd>End-of-year tournament, four teams</dd></div>
+        <div><dt>Belong</dt><dd>One family, one goal</dd></div>
+      </dl>
+    </div>
+    <div class="stack" id="stack">
+      <figure class="f1"><video class="loopvid" muted loop playsinline preload="none" poster="assets/still-fans.webp" data-src="assets/hero-fans.mp4" aria-label="Lima FC supporters watching from the stands"></video><figcaption>Our supporters on matchday</figcaption></figure>
+      <figure class="f2"><video class="loopvid" muted loop playsinline preload="none" poster="assets/still-warmup.webp" data-src="assets/hero-warmup.mp4" aria-label="Lima FC players warming up together on the pitch"></video><figcaption>Warm-up before kick-off</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="home-news" aria-labelledby="news-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="news-h">Club news</h2><p>Announcements from the executive committee, matchday reports and everything happening around the club.</p></div>
+    <div class="news-grid">
+      <article class="lead-story" id="leadStory"></article>
+      <ul class="story-list" id="storyList"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="matchday" id="home-tournament" aria-labelledby="tour-h">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 id="tour-h">End-of-year tournament</h2><p class="tour-sub">2nd edition. Four teams, one trophy, one champion.</p></div><p>Matchdays are every Thursday, with two games each: the first kicks off at 5:10 pm, the second at 6:10 pm.</p></div>
+    <div class="tour-teams" id="tourTeams"></div>
+    <div class="sub-head" id="results"><h3>Latest results</h3><span id="resultsLabel"></span></div>
+    <div class="results" id="resultsGrid"></div>
+    <div class="sub-head" id="standings"><h3>Group standings</h3><span>Three points for a win, one for a draw</span></div>
+    <div class="table-board" id="panel-table">
+      <div class="table-scroll"><table id="standTable"></table></div>
+    </div>
+    <div class="key"><span>P played</span><span>W won</span><span>D drawn</span><span>L lost</span><span>GF goals for</span><span>GA goals against</span><span>GD goal difference</span><span>Pts points</span></div>
+    <div class="sub-head" id="fixtures"><h3>Fixtures</h3><span>Every Thursday from 29 October to 3 December</span></div>
+    <ol class="fixtures" id="fixtureList"></ol>
+  </div>
+</section>
+
+<section class="gallery" id="home-gallery" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="gal-h">Gallery</h2><p>Training nights, matchdays and the people who make Lima FC.</p></div>
+    <div class="gal-tools" id="galTools" hidden>
+      <label class="btn btn-black" for="galFile">Add photos</label>
+      <input type="file" id="galFile" accept="image/*" multiple class="sr">
+      <span class="note" id="galStatus">Only club admins see this button. Photos are resized and shown to every visitor.</span>
+    </div>
+    <ul class="gal-grid" id="galGrid"></ul>
+  </div>
+</section>
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <figure><img id="lbImg" alt=""><video id="lbVid" muted loop playsinline controls hidden></video><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-nav next" id="lbNext" aria-label="Next photo">›</button>
+</dialog>
+
+
+<section class="leaders" id="home-leadership" aria-labelledby="lead-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="lead-h">Club leadership</h2><p>The executive committee runs the club for its members and is elected at the annual general meeting.</p></div>
+    <ul class="exec" id="execList"></ul>
+  </div>
+</section>
+
+<section class="join" id="home-join" aria-labelledby="join-h">
+  <div class="wrap join-grid">
+    <div class="intro">
+      <h2 id="join-h">Join Lima FC</h2>
+      <p>Register online, pay the one-off registration fee and your first month’s dues, and the committee will add you to the members’ list. Training is every Thursday, 5–7 pm.</p>
+      <ul class="tiers" id="tiers"></ul>
+    </div>
+    <div class="panel">
+      <form id="regForm" novalidate>
+        <h3>Membership registration</h3>
+        <p class="sub">Fields marked optional can be left blank. Everything else is needed to register.</p>
+        <div class="fgrid">
+          <div class="field full"><label for="r-name">Full name</label><input id="r-name" name="name" autocomplete="name" required><div class="err" id="e-name"></div></div>
+          <div class="field"><label for="r-phone">Phone (WhatsApp)</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="080..." required><div class="err" id="e-phone"></div></div>
+          <div class="field"><label for="r-email">Email <span class="opt">(optional)</span></label><input id="r-email" name="email" type="email" autocomplete="email"><div class="err" id="e-email"></div></div>
+          <div class="field"><label for="r-dob">Date of birth</label><input id="r-dob" name="dob" type="date" required><div class="err" id="e-dob"></div></div>
+          <div class="field"><label for="r-pos">Playing position <span class="opt">(players)</span></label>
+            <select id="r-pos" name="position"><option value="">Not playing</option><option>Goalkeeper</option><option>Defender</option><option>Midfielder</option><option>Forward</option></select></div>
+          <div class="field"><label for="r-ec">Emergency contact name</label><input id="r-ec" name="emergencyName" required><div class="err" id="e-ec"></div></div>
+          <div class="field"><label for="r-ecp">Emergency contact phone</label><input id="r-ecp" name="emergencyPhone" type="tel" inputmode="tel" required><div class="err" id="e-ecp"></div></div>
+          <div class="field full" id="guardianWrap" hidden><label for="r-guard">Parent or guardian’s name (under 18s)</label><input id="r-guard" name="guardian"><div class="err" id="e-guard"></div></div>
+          <label class="check full"><input type="checkbox" id="r-agree" name="agree"> <span>I have read and agree to follow the <a href="policy.html" data-route="policy">Lima policy</a>, including the code of conduct.</span></label>
+          <div class="err full" id="e-agree"></div>
+        </div>
+        <div class="form-actions"><button class="btn btn-lime" type="submit" id="regBtn">Register</button><span class="note" id="regNote">The committee confirms every registration.</span></div>
+      </form>
+      <div class="done" id="regDone" role="status" aria-live="polite">
+        <h3 tabindex="-1">Registration received</h3>
+        <p id="regDoneText"></p>
+        <a class="btn btn-lime" id="regWa" href="#" target="_blank" rel="noopener">Send to the club on WhatsApp</a>
+        <p class="note" style="margin-top:14px"><button class="copy" id="regAgain" type="button" style="padding:0">Register another member</button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dues" id="home-dues" aria-labelledby="dues-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="dues-h">Pay your dues</h2><p>Dues keep the club running: pitch hire, kits, match fees and equipment. Pay online or by bank transfer.</p></div>
+    <form class="dues-grid" id="duesForm" novalidate>
+      <div class="step">
+        <div class="n" aria-hidden="true">1</div>
+        <h3>Choose what you’re paying</h3>
+        <div class="stack-f">
+          <p style="margin:0;color:var(--muted)">Monthly dues are <b style="color:var(--ink)" id="dRate"></b>. Pay for one month or several at once.</p>
+          <fieldset class="field"><legend style="color:var(--ink)">Period</legend>
+            <div class="choice">
+              <label><input type="radio" name="period" value="1" checked><span>Monthly</span></label>
+              <label><input type="radio" name="period" value="3"><span>3 months</span></label>
+              <label><input type="radio" name="period" value="12"><span>Full year</span></label>
+            </div></fieldset>
+          <label class="check" style="color:var(--ink)"><input type="checkbox" id="d-reg"> <span>Add the one-off registration fee (new members)</span></label>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n" aria-hidden="true">2</div>
+        <h3>Your details</h3>
+        <div class="stack-f">
+          <div class="field"><label for="d-name">Full name</label><input id="d-name" autocomplete="name" required><div class="err" id="e-dname"></div></div>
+          <div class="field"><label for="d-phone">Phone</label><input id="d-phone" type="tel" inputmode="tel" autocomplete="tel" required><div class="err" id="e-dphone"></div></div>
+          <div class="field"><label for="d-email">Email for your receipt <span class="opt" style="color:var(--muted)">(optional)</span></label><input id="d-email" type="email" autocomplete="email"></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n" aria-hidden="true">3</div>
+        <h3>Pay</h3>
+        <div class="total" aria-live="polite"><div class="k">Amount due</div><div class="amt" id="dAmt">₦0</div><div class="for" id="dFor"></div></div>
+        <div class="paybtns">
+          <button class="btn btn-lime" type="button" id="payOnline">Pay online with card</button>
+          <button class="btn btn-black" type="button" id="payTransfer">I’ve paid by bank transfer</button>
+        </div>
+        <div class="msg" id="duesMsg" role="status"></div>
+        <div class="bank">
+          <b>Bank transfer details</b>
+          <dl id="bankDl"></dl>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="policy stripes" id="home-policy" aria-labelledby="pol-h">
+  <div class="wrap policy-grid">
+    <div class="intro">
+      <h2 id="pol-h">Lima policy</h2>
+      <p>The rules every member agrees to when they join. They protect our players, our supporters and the good name of the club.</p>
+      <div class="stamp"><img src="assets/crest-160.webp" alt="" width="44" height="44"><span id="polDate"></span></div>
+    </div>
+    <div class="acc" id="policyAcc"></div>
+  </div>
+</section>
+</main>
+
+<div class="page-view" id="pageView" hidden>
+  <header class="page-hero stripes">
+    <div class="wrap page-hero-in">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html" data-route="home">Home</a><span aria-hidden="true">/</span><span id="crumbHere" aria-current="page"></span></nav>
+        <h1 id="pageTitle"></h1>
+        <p id="pageLede"></p>
+      </div>
+      <img class="page-crest" src="assets/crest-160.webp" alt="" width="120" height="120">
+    </div>
+  </header>
+  <div id="pageSlot"></div>
+  <div id="pageExtra"></div>
+  <nav class="pager wrap" aria-label="More pages" id="pager"></nav>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" data-route="home"><img src="assets/crest-160.webp" alt="" width="76" height="76"><span>Lima FC</span></a>
+        <p style="margin-top:16px;max-width:36ch">Lima Football Club. Run by its members, for its members.</p>
+      </div>
+      <div><h4>Club</h4><ul>
+        <li><a href="club.html" data-route="club">About the club</a></li><li><a href="news.html" data-route="news">News</a></li><li><a href="tournament.html" data-route="tournament">Tournament</a></li><li><a href="tournament.html" data-route="tournament">Standings</a></li><li><a href="gallery.html" data-route="gallery">Gallery</a></li><li><a href="leadership.html" data-route="leadership">Leadership</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul id="contactList"></ul></div>
+    </div>
+    <div class="legal"><span>© <span id="yr"></span> Lima Football Club. All rights reserved.</span><a href="policy.html" data-route="policy" style="color:inherit">Lima policy and privacy</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   SITE CONTENT — edit everything the club needs to update right here.
+   Names, scores, fees, bank details and contacts below are SAMPLE DATA.
+   ===================================================================== */
+const SITE = {
+  contact: {
+    whatsapp: "2349082392129",           // club WhatsApp, international format, digits only
+    phone: "0908 239 2129",
+    phoneIntl: "+2349082392129",
+    instagram: "lima_fc24",
+    ground: "Razaq Balogun Stadium"
+  },
+  payments: {
+    onlineUrl: "",                          // paste your Paystack or Flutterwave payment-page link here
+    bank: { "Bank": "Opay", "Account name": "Adedeji Olakunle", "Account number": "8053106432" }
+  },
+  registrationFee: 50000,   // one-off, new members
+  monthlyDues: 10000,       // every member, per month
+  news: [
+    { tag: "Tournament", tone: "green", date: "30 Oct 2026", img: "assets/still-play.webp", vid: "assets/clip-play.mp4", alt: "Players competing for the ball during the tournament",
+      title: "Bugatti Boyz top the table after matchday 1",
+      body: "The 2nd edition of the Lima FC end-of-year tournament is under way. Bugatti Boyz edged Titanium FC 1–0 to take an early lead, while Phantom FC and City Boys shared the points in a 1–1 draw.",
+      more: "Matchday 2 is on Thursday 5 November: City Boys take on Bugatti Boyz at 5:10 pm, followed by Titanium FC against Phantom FC at 6:10 pm. Full fixtures and the group table are in the Tournament section." },
+    { tag: "Training", tone: "gold", date: "28 Oct 2026", img: "assets/still-warmup.webp", vid: "assets/hero-warmup.mp4", alt: "Players warming up",
+      title: "Training is every Thursday, 5–7 pm",
+      body: "All members are welcome. Please be on the pitch and kitted up before 5 pm so the warm-up starts on time." },
+    { tag: "Membership", tone: "", date: "27 Oct 2026", img: "assets/still-dribble.webp", vid: "assets/clip-dribble.mp4", alt: "A Lima FC player dribbling the ball",
+      title: "Registration is open for new members",
+      body: "Register online, then pay the ₦50,000 registration fee and ₦10,000 monthly dues in the Pay your dues section." }
+  ],
+  tournament: {
+    teams: {
+      "Bugatti Boyz": "assets/bugatti.webp",
+      "City Boys":    "assets/cityboys.webp",
+      "Phantom FC":   "assets/phantom.webp",
+      "Titanium FC":  "assets/titanium.webp"
+    },
+    // Add score: [home, away] once a game is played; the table, results and hero update themselves.
+    fixtures: [
+      { md: 1, date: "Thu 29 Oct", games: [
+        { time: "5:10 pm", home: "Phantom FC",   away: "City Boys",   score: [1, 1] },
+        { time: "6:10 pm", home: "Bugatti Boyz", away: "Titanium FC", score: [1, 0] } ] },
+      { md: 2, date: "Thu 5 Nov", games: [
+        { time: "5:10 pm", home: "City Boys",   away: "Bugatti Boyz" },
+        { time: "6:10 pm", home: "Titanium FC", away: "Phantom FC" } ] },
+      { md: 3, date: "Thu 12 Nov", games: [
+        { time: "5:10 pm", home: "Phantom FC", away: "Bugatti Boyz" },
+        { time: "6:10 pm", home: "City Boys",  away: "Titanium FC" } ] },
+      { md: 4, date: "Thu 19 Nov", games: [
+        { time: "5:10 pm", home: "Titanium FC", away: "Bugatti Boyz" },
+        { time: "6:10 pm", home: "City Boys",   away: "Phantom FC" } ] },
+      { md: 5, date: "Thu 26 Nov", games: [
+        { time: "5:10 pm", home: "Phantom FC",   away: "Titanium FC" },
+        { time: "6:10 pm", home: "Bugatti Boyz", away: "City Boys" } ] },
+      { md: 6, date: "Thu 3 Dec", games: [
+        { time: "5:10 pm", home: "Titanium FC",  away: "City Boys" },
+        { time: "6:10 pm", home: "Bugatti Boyz", away: "Phantom FC" } ] }
+    ]
+  },
+  // Starter items are clips from the club's own videos (src is the still shown before the clip loads). Admins add more from the Gallery section.
+  gallery: [
+    { src: "assets/still-dribble.webp",  vid: "assets/clip-dribble.mp4",  cap: "Taking on the defence", shape: "wide" },
+    { src: "assets/still-fans.webp",     vid: "assets/hero-fans.mp4",     cap: "Supporters in the stands", shape: "tall" },
+    { src: "assets/still-warmup.webp",   vid: "assets/hero-warmup.mp4",   cap: "Warm-up run", shape: "tall" },
+    { src: "assets/still-play.webp",     vid: "assets/clip-play.mp4",     cap: "Building from the back", shape: "wide" },
+    { src: "assets/still-attack.webp",   vid: "assets/clip-attack.mp4",   cap: "On the attack", shape: "wide" },
+    { src: "assets/still-sideline.webp", vid: "assets/clip-sideline.mp4", cap: "Watching from the sideline", shape: "wide" }
+  ],
+  leaders: [
+    // add photo: "images/pharell.jpg" to any leader to show their picture in the shield
+    { name: "Pharell", role: "President", duty: "Leads the executive committee, chairs club meetings and represents Lima FC in the league." },
+    { name: "Joshua", role: "Vice President", duty: "Deputises for the President and oversees club activities and events." },
+    { name: "Elijah", role: "Head of Disciplinary Committee", duty: "Upholds the Lima policy and leads disciplinary hearings and appeals." },
+    { name: "Glorious", role: "Treasurer, Social Secretary and Data Officer", duty: "Manages club funds and dues, organises social events and looks after members’ data." }
+  ],
+  policyUpdated: "October 2026",
+  policy: [
+    { title: "Code of conduct", items: [
+      "Respect team-mates, opponents, referees, coaches and supporters at all times.",
+      "No violence, threats, abusive language or intimidation, on or off the pitch.",
+      "Arrive on time for training and matches, in the correct kit.",
+      "No alcohol, drugs or smoking at training, on matchdays or while representing the club.",
+      "Accept the referee’s decisions. Only the captain speaks to match officials.",
+      "Training is every Thursday, 5–7 pm. Tell the committee in advance if you can’t make it." ] },
+    { title: "Membership and dues", items: [
+      "Membership starts once registration is confirmed by the committee and the registration fee is paid.",
+      "New members pay a one-off registration fee of ₦50,000. Dues are ₦10,000 a month, paid by the 5th of the month they cover. Members may pay several months at once.",
+      "Players more than two months behind on dues may not be selected until their account is up to date.",
+      "Members facing hardship can speak privately to the treasurer about a payment plan." ] },
+    { title: "Safeguarding and welfare", items: [
+      "Members under 18 need written consent from a parent or guardian to join.",
+      "No adult should be alone with a junior player out of sight of others.",
+      "Any concern about a player’s safety or wellbeing must be reported to the President or any committee member straight away.",
+      "Injuries are reported to the coaching staff before a player returns to training." ] },
+    { title: "Equality and anti-discrimination", items: [
+      "Lima FC is open to everyone regardless of ethnicity, religion, gender, disability or background.",
+      "Discriminatory language or behaviour leads to immediate suspension pending a disciplinary hearing." ] },
+    { title: "Discipline and complaints", items: [
+      "Breaches of this policy are reviewed by the Disciplinary Committee.",
+      "Sanctions range from a warning to suspension or removal from the club.",
+      "Every member has the right to be heard and to appeal a decision at the next general meeting.",
+      "Complaints can be raised in confidence with the Head of the Disciplinary Committee or the President." ] },
+    { title: "Privacy and your data", items: [
+      "We collect only what we need to run the club: contact details, date of birth, emergency contact and payment records.",
+      "Your details are seen only by the executive committee and are never sold or shared outside the club.",
+      "We handle personal data in line with the Nigeria Data Protection Act 2023.",
+      "You can ask the Data Officer to see, correct or delete your information at any time." ] }
+  ]
+};
+
+/* ===================== rendering ===================== */
+const $ = (s, r = document) => r.querySelector(s);
+const naira = n => "₦" + Number(n).toLocaleString("en-NG");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const initials = n => { const p = n.trim().split(/\s+/); return p.length > 1 ? p[0][0] + p[1][0] : n.slice(0, 1); };
+const US = "Lima FC";
+
+$("#yr").textContent = new Date().getFullYear();
+$("#chairName").textContent = SITE.leaders[0].name;
+$("#chairRole").textContent = SITE.leaders[0].role + ", on behalf of the executive committee";
+$("#polDate").textContent = "Last updated " + SITE.policyUpdated;
+
+// tournament data, computed once
+const T = SITE.tournament;
+const badge = (n, cls = "") => T.teams[n] ? `<img src="${T.teams[n]}" alt="" class="${cls}" width="34" height="34">` : "";
+const played = T.fixtures.flatMap(m => m.games.filter(g => Array.isArray(g.score)).map(g => ({ ...g, md: m.md, date: m.date })));
+const nextMd = T.fixtures.find(m => m.games.some(g => !Array.isArray(g.score)));
+const lastMd = [...T.fixtures].reverse().find(m => m.games.some(g => Array.isArray(g.score)));
+
+// hero board
+{
+  const g = played[played.length - 1];
+  $("#lastMatch").innerHTML = g ? `${esc(g.home)} <b>${g.score[0]}–${g.score[1]}</b> ${esc(g.away)}` : "Tournament starts soon";
+  const n = nextMd && nextMd.games.find(x => !Array.isArray(x.score));
+  $("#nextMatch").innerHTML = n ? `${esc(n.home)} vs ${esc(n.away)}, <b>${nextMd.date ? esc(nextMd.date) + ", " : ""}${esc(n.time)}</b>` : "Tournament complete";
+}
+
+// a muted looping clip that starts when scrolled into view (falls back to its still image)
+const clip = (vid, poster, alt, cls = "") => vid
+  ? `<video class="loopvid ${cls}" muted loop playsinline preload="none" poster="${poster}" data-src="${vid}" aria-label="${esc(alt)}"></video>`
+  : `<img class="${cls}" src="${poster}" alt="${esc(alt)}" loading="lazy">`;
+
+// news
+{
+  const [lead, ...rest] = SITE.news;
+  $("#leadStory").innerHTML = `
+    ${clip(lead.vid, lead.img, lead.alt)}
+    <div class="meta"><span class="tag ${lead.tone}">${esc(lead.tag)}</span><time>${esc(lead.date)}</time></div>
+    <h3>${esc(lead.title)}</h3>
+    <p>${esc(lead.body)}</p>
+    ${lead.more ? `<details class="more"><summary>Read more</summary><p>${esc(lead.more)}</p></details>` : ""}`;
+  $("#storyList").innerHTML = rest.map(s => `
+    <li class="story">
+      ${s.img ? clip(s.vid, s.img, s.alt, "thumb") : `<div class="thumb blank"><img src="assets/crest-160.webp" alt=""></div>`}
+      <div><div class="meta"><span class="tag ${s.tone}">${esc(s.tag)}</span><time>${esc(s.date)}</time></div>
+      <h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></div>
+    </li>`).join("");
+}
+
+// teams strip
+$("#tourTeams").innerHTML = Object.keys(T.teams).map(n => `<div>${badge(n)}<b>${esc(n)}</b></div>`).join("");
+
+// latest results (most recent matchday played)
+{
+  const games = lastMd ? lastMd.games.filter(g => Array.isArray(g.score)) : [];
+  $("#resultsLabel").textContent = lastMd ? `Matchday ${lastMd.md}${lastMd.date ? ", " + lastMd.date : ""}` : "";
+  $("#resultsGrid").innerHTML = games.length ? games.map(g => {
+    const [h, a] = g.score, res = h > a ? "home" : h < a ? "away" : "draw";
+    return `<article class="score" aria-label="${esc(g.home)} ${h}, ${esc(g.away)} ${a}. ${res === "draw" ? "Draw" : (res === "home" ? g.home : g.away) + " win"}.">
+      <div class="top"><span>Matchday ${lastMd.md}, ${esc(g.time)} kick-off</span><span class="res ${res === "draw" ? "D" : "W"}" title="${res === "draw" ? "Draw" : "Full time"}">${res === "draw" ? "D" : "FT"}</span></div>
+      <div class="side ${res === "home" ? "win" : ""}"><span class="t">${badge(g.home)}${esc(g.home)}</span><span class="g">${h}</span></div>
+      <div class="side ${res === "away" ? "win" : ""}"><span class="t">${badge(g.away)}${esc(g.away)}</span><span class="g">${a}</span></div>
+      <div class="comp">End-of-year tournament</div></article>`;
+  }).join("") : `<p style="color:#B9C6BC">Results appear here after the first matchday.</p>`;
+}
+
+// standings, calculated from the results above
+{
+  const tbl = {}; Object.keys(T.teams).forEach((n, i) => tbl[n] = { club: n, order: i, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, form: "" });
+  played.forEach(g => {
+    const [h, a] = g.score, H = tbl[g.home], A = tbl[g.away];
+    if (!H || !A) return;
+    H.p++; A.p++; H.gf += h; H.ga += a; A.gf += a; A.ga += h;
+    if (h > a) { H.w++; A.l++; H.form += "W"; A.form += "L"; } else if (h < a) { A.w++; H.l++; A.form += "W"; H.form += "L"; } else { H.d++; A.d++; H.form += "D"; A.form += "D"; }
+  });
+  // tie order follows the club's published table: points, goal difference, goals scored
+  const rows = Object.values(tbl).map(r => ({ ...r, gd: r.gf - r.ga, pts: r.w * 3 + r.d }))
+    .sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf || a.order - b.order);
+  $("#standTable").innerHTML = `
+    <caption>Group standings<small>After matchday ${lastMd ? lastMd.md : 0} of ${T.fixtures.length}</small></caption>
+    <thead><tr><th scope="col">Pos</th><th scope="col" class="club">Team</th><th scope="col">P</th><th scope="col">W</th><th scope="col">D</th><th scope="col">L</th>
+    <th scope="col" class="hide-sm">GF</th><th scope="col" class="hide-sm">GA</th><th scope="col">GD</th><th scope="col">Pts</th><th scope="col" class="hide-sm">Form</th></tr></thead>
+    <tbody>${rows.map((r, i) => `<tr class="${i === 0 && r.p ? "us" : ""}">
+      <td class="pos">${i + 1}</td><th scope="row" class="club"><span class="badge-cell">${badge(r.club)}${esc(r.club)}</span></th>
+      <td>${r.p}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td>
+      <td class="hide-sm">${r.gf}</td><td class="hide-sm">${r.ga}</td><td>${r.gd > 0 ? "+" + r.gd : r.gd === 0 ? 0 : "−" + Math.abs(r.gd)}</td>
+      <td class="pts">${r.pts}</td>
+      <td class="hide-sm">${r.form ? `<span class="form" aria-label="Form, oldest to newest: ${r.form.split("").join(" ")}">${r.form.split("").map(c => `<i class="${c}">${c}</i>`).join("")}</span>` : "–"}</td>
+    </tr>`).join("")}</tbody>`;
+}
+
+// fixtures
+$("#fixtureList").innerHTML = T.fixtures.map(m => {
+  const done = m.games.every(g => Array.isArray(g.score)), isNext = m === nextMd;
+  return `<li class="${done ? "played" : ""} ${isNext ? "next" : ""}">
+    <div class="md"><b>Matchday ${m.md}</b><span>${done ? "Played" + (m.date ? ", " + esc(m.date) : "") : isNext ? "Next up" + (m.date ? ", " + esc(m.date) : "") : (m.date ? esc(m.date) : "Upcoming")}</span></div>
+    ${m.games.map(g => `<div class="fx"><time>${esc(g.time)}</time><span><b>${esc(g.home)}</b>${Array.isArray(g.score) ? `<span class="sc">${g.score[0]}–${g.score[1]}</span>` : " vs "}<b>${esc(g.away)}</b></span></div>`).join("")}
+  </li>`;
+}).join("");
+
+// leadership
+$("#execList").innerHTML = SITE.leaders.map((p, i) => `
+  <li class="${i === 0 ? "lead-row" : ""}">
+    <div class="shield" aria-hidden="true"><span ${p.photo ? `style="background:#000 url('${p.photo}') center/cover"` : ""}>${p.photo ? "" : esc(initials(p.name))}</span></div>
+    <div><div class="role">${esc(p.role)}</div><h3>${esc(p.name)}</h3><p>${esc(p.duty)}</p></div>
+  </li>`).join("");
+
+// membership fees
+$("#tiers").innerHTML = `
+  <li><div><b>Registration fee</b><span>Paid once by every new member</span></div><div class="fee">${naira(SITE.registrationFee)}<small>one-off</small></div></li>
+  <li><div><b>Monthly dues</b><span>Training every Thursday, 5–7 pm, and all club activities</span></div><div class="fee">${naira(SITE.monthlyDues)}<small>per month</small></div></li>`;
+
+// policy
+$("#policyAcc").innerHTML = SITE.policy.map((p, i) => `
+  <details ${i === 0 ? "open" : ""}><summary>${esc(p.title)}</summary>
+  <div class="body"><ul>${p.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div></details>`).join("");
+
+// contact
+{
+  const c = SITE.contact;
+  $("#contactList").innerHTML = `
+    <li><a href="tel:${c.phoneIntl}">${esc(c.phone)}</a></li>
+    <li><a href="https://www.instagram.com/${c.instagram}" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://wa.me/${c.whatsapp}" target="_blank" rel="noopener">WhatsApp the club</a></li>
+    <li>${esc(c.ground)}</li>`;
+}
+
+// bank details
+$("#bankDl").innerHTML = Object.entries(SITE.payments.bank).map(([k, v]) =>
+  `<dt>${esc(k)}</dt><dd>${esc(v)}${k === "Account number" ? `<button type="button" class="copy" data-copy="${esc(v)}">Copy</button>` : ""}</dd>`).join("");
+
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 3200); }
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.copy); toast("Account number copied"); }
+  catch { toast("Copy didn’t work. Select the number and copy it manually."); }
+});
+
+/* ===================== nav ===================== */
+const nav = $("#nav"), menuBtn = $("#menuBtn"), links = $("#links");
+const onScroll = () => nav.classList.toggle("solid", window.scrollY > 40 || links.classList.contains("open") || document.body.classList.contains("on-page"));
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+menuBtn.addEventListener("click", () => {
+  const open = !links.classList.contains("open");
+  links.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); document.body.style.overflow = open ? "hidden" : ""; onScroll();
+});
+links.addEventListener("click", e => { if (e.target.closest("a") && links.classList.contains("open")) menuBtn.click(); });
+
+/* ===================== hero video reel ===================== */
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+{
+  const vids = [...document.querySelectorAll("#heroMedia video")];
+  const labels = ["Matchday", "Warm-up", "In the stands"];
+  const reel = $("#reel"), pp = $("#pp");
+  const dots = vids.map((_, i) => { const d = document.createElement("button"); d.className = "dot"; d.setAttribute("aria-label", "Show clip " + (i + 1) + ": " + labels[i]); d.innerHTML = "<i></i>"; reel.insertBefore(d, pp); d.addEventListener("click", () => show(i, true)); return d; });
+  let cur = -1, paused = reduced;
+  vids.forEach(v => { v.muted = true; v.defaultMuted = true; v.setAttribute("playsinline", ""); });
+  const load = v => { if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; v.load(); } };
+  const tryPlay = v => { if (paused) return; const p = v.play(); if (p) p.catch(() => setTimeout(() => { if (!paused && vids[cur] === v) v.play().catch(() => {}); }, 600)); };
+  let pending = null;
+  function show(i) {
+    if (i === cur) return;
+    const v = vids[i]; load(v);
+    const reveal = () => {
+      if (pending !== reveal) return; pending = null;
+      const prev = vids[cur]; cur = i;
+      try { v.currentTime = 0; } catch (_) {}
+      v.classList.add("on"); tryPlay(v);
+      if (prev && prev !== v) setTimeout(() => { prev.classList.remove("on"); prev.pause(); }, 900);
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); if (k !== i) d.style.setProperty("--p", 0); });
+      $("#clipLabel").textContent = labels[i];
+      load(vids[(i + 1) % vids.length]);
+    };
+    pending = reveal;
+    if (v.readyState >= 2) reveal();
+    else { v.addEventListener("loadeddata", reveal, { once: true }); setTimeout(() => { if (pending === reveal && v.readyState < 2) { pending = null; if (cur < 0) { cur = i; v.classList.add("on"); } } }, 8000); }
+  }
+  vids.forEach((v, i) => {
+    v.addEventListener("ended", () => { if (i === cur) show((i + 1) % vids.length); });
+    v.addEventListener("error", () => { if (i === cur || cur < 0) show((i + 1) % vids.length); });
+    v.addEventListener("timeupdate", () => { if (i === cur && v.duration) dots[i].style.setProperty("--p", v.currentTime / v.duration); });
+  });
+  function setPaused(p) {
+    paused = p; const v = vids[Math.max(cur, 0)];
+    if (p) v.pause(); else tryPlay(v);
+    pp.setAttribute("aria-label", p ? "Play background video" : "Pause background video");
+    pp.innerHTML = p ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>'
+                     : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+  }
+  pp.addEventListener("click", () => setPaused(!paused));
+  show(0); setPaused(paused);
+  // pause when hero is off-screen to save battery and data
+  new IntersectionObserver(([en]) => { const v = vids[Math.max(cur, 0)]; if (!en.isIntersecting) v.pause(); else tryPlay(v); }).observe($(".hero"));
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && cur >= 0) tryPlay(vids[cur]); });
+}
+
+/* ===================== looping clips in the welcome section ===================== */
+// every .loopvid on the page (welcome, news, gallery) loads and plays only while on screen
+const clipIO = reduced ? null : new IntersectionObserver(entries => entries.forEach(en => {
+  const v = en.target;
+  if (en.isIntersecting) { if (!v.getAttribute("src")) { v.src = v.dataset.src; v.preload = "auto"; v.load(); } v.play().catch(() => setTimeout(() => v.play().catch(() => {}), 500)); }
+  else v.pause();
+}), { rootMargin: "150px 0px" });
+function watchClips(root = document) {
+  root.querySelectorAll(".loopvid").forEach(v => {
+    v.muted = true; v.defaultMuted = true;
+    if (clipIO && !v.dataset.watched) { v.dataset.watched = "1"; clipIO.observe(v); }
+  });
+}
+watchClips();
+
+/* ===================== 3D crest + depth ===================== */
+if (!reduced) {
+  const stage = $("#crestStage"), crest = $("#crest3d");
+  setTimeout(() => stage.classList.remove("intro"), 1700);
+  const hero = $(".hero");
+  let raf = 0;
+  hero.addEventListener("pointermove", e => {
+    if (e.pointerType !== "mouse" || stage.classList.contains("intro")) return;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const r = crest.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / innerWidth, y = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+      crest.style.transform = `rotateY(${x * 34}deg) rotateX(${-y * 26}deg)`;
+    });
+  });
+  hero.addEventListener("pointerleave", () => { crest.style.transform = ""; });
+  // scroll-linked depth for the photo stack and the standings board
+  const stack = $("#stack"), board = $("#panel-table");
+  const onDepth = () => {
+    const r = stack.getBoundingClientRect(), p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - innerHeight / 2) / innerHeight));
+    stack.style.setProperty("--ry1", (18 * p + 8) + "deg"); stack.style.setProperty("--ry2", (-14 * p - 6) + "deg");
+    const b = board.getBoundingClientRect(), q = Math.max(0, Math.min(1, (b.top - innerHeight * .25) / innerHeight));
+    if (innerWidth > 700) board.style.setProperty("--tilt", (q * 16) + "deg");
+  };
+  window.addEventListener("scroll", () => requestAnimationFrame(onDepth), { passive: true }); onDepth();
+} else { $("#crestStage").classList.remove("intro"); }
+
+/* ===================== club data store (optional) ===================== */
+// On claude.ai, registrations and payment notices are saved to the club's private store.
+// Anywhere else (or if saving isn't possible) members send them to the club on WhatsApp.
+let dbP = null, userP = null;
+if (window.claude && typeof window.claude.use === "function") { dbP = window.claude.use("db").catch(() => null); userP = window.claude.use("user").catch(() => null); }
+async function saveRecord(kind, data) {
+  try {
+    if (!dbP) return false;
+    const [db, user] = await Promise.all([dbP, userP]);
+    if (!db || !user) return false;
+    const id = await user.id(); if (!id) return false;
+    if (kind === "registration") await db.doc("registrations/" + id).set({ ...data, submittedAt: new Date().toISOString() });
+    else await db.collection("payments/" + id + "/notices").add({ ...data, submittedAt: new Date().toISOString() });
+    return true;
+  } catch (err) { console.warn("Save failed", err); return false; }
+}
+const waLink = text => "https://wa.me/" + SITE.contact.whatsapp + "?text=" + encodeURIComponent(text);
+
+/* ===================== gallery ===================== */
+{
+  const grid = $("#galGrid"), lb = $("#lightbox");
+  let dbItems = [], canEdit = false, db = null, assets = null, idx = 0;
+  const starters = SITE.gallery.map(g => ({ src: g.src, vid: g.vid || "", cap: g.cap, shape: g.shape || "" }));
+  const shapeOf = (w, h) => !w || !h ? "" : h > w * 1.2 ? "tall" : w > h * 1.6 ? "wide" : "";
+  const all = () => [...dbItems.map(d => ({ src: "/_blob/" + d.assetId, cap: d.cap || "Lima FC", shape: shapeOf(d.w, d.h), docId: d.docId, assetId: d.assetId })), ...starters];
+  function render() {
+    const items = all();
+    grid.innerHTML = items.map((it, i) => `<li class="${it.shape}">
+      <button class="open" data-i="${i}" aria-label="Open ${it.vid ? "video" : "photo"}: ${esc(it.cap)}">${clip(it.vid, it.src, it.cap)}</button>
+      ${canEdit && it.docId ? `<button class="del" data-doc="${it.docId}" data-asset="${it.assetId}">Remove</button>` : ""}</li>`).join("");
+    watchClips(grid);
+  }
+  function open(i) {
+    const items = all(); idx = (i + items.length) % items.length;
+    const it = items[idx], im = $("#lbImg"), vd = $("#lbVid");
+    if (it.vid) { im.hidden = true; vd.hidden = false; vd.poster = it.src; if (vd.getAttribute("src") !== it.vid) vd.src = it.vid; vd.setAttribute("aria-label", it.cap); vd.play().catch(() => {}); }
+    else { vd.pause(); vd.hidden = true; im.hidden = false; im.src = it.src; im.alt = it.cap; }
+    $("#lbCap").textContent = it.cap;
+    if (!lb.open) { lb.showModal ? lb.showModal() : lb.setAttribute("open", ""); }
+  }
+  grid.addEventListener("click", async e => {
+    const o = e.target.closest(".open"); if (o) return open(+o.dataset.i);
+    const d = e.target.closest(".del");
+    if (d && confirm("Remove this photo from the gallery for everyone?")) {
+      try { await db.doc("gallery/" + d.dataset.doc).delete(); await assets.delete(d.dataset.asset).catch(() => {}); toast("Photo removed"); }
+      catch { toast("That photo couldn’t be removed. Try again."); }
+    }
+  });
+  $("#lbClose").addEventListener("click", () => lb.close());
+  lb.addEventListener("close", () => $("#lbVid").pause());
+  $("#lbPrev").addEventListener("click", () => open(idx - 1));
+  $("#lbNext").addEventListener("click", () => open(idx + 1));
+  lb.addEventListener("click", e => { if (e.target === lb || e.target.tagName === "FIGURE") lb.close(); });
+  lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") open(idx + 1); if (e.key === "ArrowLeft") open(idx - 1); });
+  render();
+
+  async function shrink(file) {
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, 1800 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas"); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.86));
+    return { blob, w: c.width, h: c.height };
+  }
+  (async () => {
+    if (!(window.claude && typeof window.claude.use === "function")) return;
+    [db, assets] = await Promise.all([dbP, window.claude.use("assets").catch(() => null)]);
+    if (!db) return;
+    db.collection("gallery").orderBy("addedAt", "desc").onSnapshot(snap => {
+      dbItems = snap.docs.map(d => ({ docId: d.id, ...d.data() })); render();
+    }, () => {});
+    if (!assets) return;
+    canEdit = true; $("#galTools").hidden = false; render();
+    $("#galFile").addEventListener("change", async e => {
+      const files = [...e.target.files]; e.target.value = "";
+      const st = $("#galStatus"); let done = 0, failed = 0;
+      for (const f of files) {
+        st.textContent = `Adding photo ${done + failed + 1} of ${files.length}…`;
+        try {
+          const { blob, w, h } = await shrink(f);
+          const up = await assets.upload(blob);
+          await db.collection("gallery").add({ assetId: up.id, w, h, cap: f.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").slice(0, 80), addedAt: new Date().toISOString() });
+          done++;
+        } catch (err) { console.warn(err); failed++; }
+      }
+      st.textContent = failed ? `Added ${done} photo${done === 1 ? "" : "s"}. ${failed} couldn’t be added; check they’re images under 20 MB.` : `Added ${done} photo${done === 1 ? "" : "s"} to the gallery.`;
+    });
+  })();
+}
+
+/* ===================== registration ===================== */
+const reg = $("#regForm");
+const dob = $("#r-dob");
+const ageOf = v => { if (!v) return null; const d = new Date(v), n = new Date(); let a = n.getFullYear() - d.getFullYear(); if (n < new Date(n.getFullYear(), d.getMonth(), d.getDate())) a--; return a; };
+dob.max = new Date().toISOString().slice(0, 10);
+dob.addEventListener("change", () => { const a = ageOf(dob.value); $("#guardianWrap").hidden = !(a !== null && a < 18); });
+function setErr(input, errId, msg) { $("#" + errId).textContent = msg || ""; if (input) input.setAttribute("aria-invalid", msg ? "true" : "false"); if (input && msg) input.setAttribute("aria-describedby", errId); return !msg; }
+const phoneOk = v => v.replace(/[^\d]/g, "").length >= 10;
+reg.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(reg));
+  const a = ageOf(f.dob);
+  let ok = true;
+  ok = setErr($("#r-name"), "e-name", f.name.trim().length < 3 ? "Enter your full name." : "") && ok;
+  ok = setErr($("#r-phone"), "e-phone", !phoneOk(f.phone) ? "Enter a phone number with at least 10 digits." : "") && ok;
+  ok = setErr($("#r-email"), "e-email", f.email && !/^\S+@\S+\.\S+$/.test(f.email) ? "Check the email address, or leave it blank." : "") && ok;
+  ok = setErr(dob, "e-dob", a === null ? "Enter your date of birth." : a < 5 ? "Check the date of birth." : "") && ok;
+  ok = setErr($("#r-ec"), "e-ec", f.emergencyName.trim().length < 2 ? "Enter an emergency contact." : "") && ok;
+  ok = setErr($("#r-ecp"), "e-ecp", !phoneOk(f.emergencyPhone) ? "Enter the emergency contact’s phone number." : "") && ok;
+  ok = setErr($("#r-guard"), "e-guard", a !== null && a < 18 && !f.guardian?.trim() ? "Under 18s need a parent or guardian’s name." : "") && ok;
+  ok = setErr($("#r-agree"), "e-agree", !f.agree ? "Tick the box to agree to the Lima policy." : "") && ok;
+  if (!ok) { reg.querySelector('[aria-invalid="true"]')?.focus(); return; }
+  const record = { name: f.name.trim(), phone: f.phone.trim(), email: f.email.trim(), dob: f.dob, position: f.position || "Not playing", type: "Member",
+    emergencyName: f.emergencyName.trim(), emergencyPhone: f.emergencyPhone.trim(), guardian: (f.guardian || "").trim() };
+  const btn = $("#regBtn"); btn.disabled = true; btn.textContent = "Registering…";
+  const saved = await saveRecord("registration", record);
+  btn.disabled = false; btn.textContent = "Register";
+  const msg = `Hello, I’d like to register with Lima FC.\n\nName: ${record.name}\nPhone: ${record.phone}\nEmail: ${record.email || "-"}\nDate of birth: ${record.dob}\nPosition: ${record.position}\nEmergency contact: ${record.emergencyName}, ${record.emergencyPhone}${record.guardian ? "\nParent/guardian: " + record.guardian : ""}\n\nI agree to the Lima policy.`;
+  $("#regWa").href = waLink(msg);
+  $("#regDoneText").textContent = saved
+    ? `Thanks, ${record.name.split(" ")[0]}. Your registration is saved and the committee will contact you on ${record.phone}. Your next step is to pay the registration fee and your first dues.`
+    : `Thanks, ${record.name.split(" ")[0]}. Send your details to the club on WhatsApp to finish registering. The message is already written for you.`;
+  reg.style.display = "none"; $("#regDone").classList.add("show"); $("#regDone h3").focus?.();
+  // prefill dues
+  $("#d-name").value = record.name; $("#d-phone").value = record.phone; $("#d-email").value = record.email;
+  $("#d-reg").checked = true; calc();
+});
+$("#regAgain").addEventListener("click", () => { reg.reset(); $("#guardianWrap").hidden = true; reg.style.display = ""; $("#regDone").classList.remove("show"); $("#r-name").focus(); });
+
+/* ===================== dues ===================== */
+$("#dRate").textContent = naira(SITE.monthlyDues);
+const duesForm = $("#duesForm");
+function calc() {
+  const months = +duesForm.querySelector('input[name="period"]:checked').value;
+  const inclReg = $("#d-reg").checked;
+  const total = SITE.monthlyDues * months + (inclReg ? SITE.registrationFee : 0);
+  $("#dAmt").textContent = naira(total);
+  $("#dFor").textContent = `Dues for ${months === 1 ? "1 month" : months === 12 ? "a full year" : months + " months"}${inclReg ? ", plus ₦50,000 registration fee" : ""}`.replace("₦50,000", naira(SITE.registrationFee));
+  return { months, inclReg, total };
+}
+duesForm.addEventListener("change", calc); calc();
+function duesValid() {
+  let ok = true;
+  ok = setErr($("#d-name"), "e-dname", $("#d-name").value.trim().length < 3 ? "Enter your full name." : "") && ok;
+  ok = setErr($("#d-phone"), "e-dphone", !phoneOk($("#d-phone").value) ? "Enter a phone number with at least 10 digits." : "") && ok;
+  if (!ok) duesForm.querySelector('[aria-invalid="true"]')?.focus();
+  return ok;
+}
+function duesMsg(html) { const m = $("#duesMsg"); m.innerHTML = html; m.classList.add("show"); }
+$("#payOnline").addEventListener("click", () => {
+  if (!duesValid()) return;
+  const c = calc();
+  if (SITE.payments.onlineUrl) {
+    duesMsg(`Opening the secure payment page. Pay <b>${naira(c.total)}</b> and use your full name as the reference.`);
+    window.open(SITE.payments.onlineUrl, "_blank", "noopener");
+  } else {
+    duesMsg(`Card payments aren’t switched on yet. Please pay <b>${naira(c.total)}</b> by bank transfer using the details below, then tap “I’ve paid by bank transfer”.`);
+  }
+});
+$("#payTransfer").addEventListener("click", async () => {
+  if (!duesValid()) return;
+  const c = calc();
+  const rec = { name: $("#d-name").value.trim(), phone: $("#d-phone").value.trim(), email: $("#d-email").value.trim(), method: "Bank transfer", ...c };
+  const b = $("#payTransfer"); b.disabled = true;
+  const saved = await saveRecord("payment", rec);
+  b.disabled = false;
+  const text = `Hello, I’ve paid my Lima FC dues by bank transfer.\n\nName: ${rec.name}\nPhone: ${rec.phone}\nAmount: ${naira(c.total)}\nFor: ${$("#dFor").textContent}\n\nI’ll attach my transfer receipt.`;
+  duesMsg(saved
+    ? `Thanks. The treasurer has been notified of your <b>${naira(c.total)}</b> payment and will confirm once it reaches the club account. <a href="${waLink(text)}" target="_blank" rel="noopener">Send your receipt on WhatsApp</a> to speed things up.`
+    : `Thanks. <a href="${waLink(text)}" target="_blank" rel="noopener">Send your transfer receipt on WhatsApp</a> so the treasurer can confirm your <b>${naira(c.total)}</b> payment.`);
+});
+
+/* ===================== pages =====================
+   The homepage shows every section. Each menu tab also opens a dedicated page:
+   the matching homepage section is moved into the page (so its forms, clips and
+   live data keep working) along with page-only content, then moved back on return. */
+const MODE = "files";           // "hash" on claude.ai, "files" for the self-hosted site
+const START_PAGE = "join";     // which page this file opens on ("files" mode)
+const C = SITE.contact;
+const IG = `https://www.instagram.com/${C.instagram}`;
+const routeHref = name => MODE === "files" ? (name === "home" ? "index.html" : name + ".html") : (name === "home" ? "#top" : "#" + name);
+const igBlock = (title = "Follow Lima FC on Instagram") => `
+  <section class="ig"><div class="wrap ig-in"><div><h2>${title}</h2><p>Match clips, results and training updates. <span class="handle">@${esc(C.instagram)}</span></p></div>
+  <a class="btn btn-lime" href="${IG}" target="_blank" rel="noopener">Open Instagram</a></div></section>`;
+const contactBlock = (title, intro) => `
+  <section class="extra light"><div class="wrap"><h2>${title}</h2>${intro ? `<p>${intro}</p>` : ""}
+  <div class="contact-grid" style="margin-top:22px">
+    <a class="card" href="tel:${C.phoneIntl}"><div class="k">Call</div><div class="v">${esc(C.phone)}</div></a>
+    <a class="card" href="https://wa.me/${C.whatsapp}" target="_blank" rel="noopener"><div class="k">WhatsApp</div><div class="v">${esc(C.phone)}</div></a>
+    <a class="card" href="${IG}" target="_blank" rel="noopener"><div class="k">Instagram</div><div class="v">@${esc(C.instagram)}</div></a>
+  </div></div></section>`;
+
+const PAGES = {
+  club: { label: "The club", title: "The club", lede: "Lima Football Club is a community of players and supporters. One family, one goal.",
+    move: ["home-club"],
+    extra: () => `
+    <section class="extra light"><div class="wrap"><h2>Training nights</h2>
+      <div class="cards">
+        <div class="card"><div class="big">Thursday</div><h3>Every week</h3><p>5–7 pm, all members welcome.</p></div>
+        <div class="card"><div class="big">Kit up</div><h3>What to bring</h3><p>Boots, shin pads, water and your training kit. Be on the pitch before 5 pm.</p></div>
+        <div class="card"><div class="big">New?</div><h3>Come and see</h3><p>Join a Thursday session, meet the committee, then register when you’re ready.</p></div>
+      </div>
+      <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-lime" href="${routeHref("join")}" data-route="join">Join Lima FC</a><a class="btn btn-black" href="${routeHref("leadership")}" data-route="leadership">Meet the committee</a></div>
+    </div></section>${igBlock()}` },
+  news: { label: "News", title: "Club news", lede: "Announcements, tournament reports and everything happening around Lima FC.",
+    move: [],
+    extra: () => `
+    <section class="extra light"><div class="wrap"><ol class="full-news">${SITE.news.map(n => `<li><article>
+      <div class="media">${clip(n.vid, n.img, n.alt)}</div>
+      <div><div class="meta"><span class="tag ${n.tone}">${esc(n.tag)}</span><time>${esc(n.date)}</time></div>
+      <h2>${esc(n.title)}</h2><p>${esc(n.body)}</p>${n.more ? `<p>${esc(n.more)}</p>` : ""}</div>
+    </article></li>`).join("")}</ol></div></section>${igBlock("More on Instagram")}` },
+  tournament: { label: "Tournament", title: "End-of-year tournament", lede: "2nd edition. Four teams, one trophy, one champion. Matchdays every Thursday, 5:10 pm and 6:10 pm.",
+    move: ["home-tournament"],
+    extra: () => `
+    <section class="extra light"><div class="wrap"><h2>How it works</h2>
+      <div class="cards">
+        <div class="card"><div class="big">4 teams</div><p>${Object.keys(T.teams).map(esc).join(", ")}.</p></div>
+        <div class="card"><div class="big">6 Thursdays</div><p>Every team plays each other twice, two games a night: 5:10 pm and 6:10 pm.</p></div>
+        <div class="card"><div class="big">3 points</div><p>Three for a win, one for a draw. Ties are split on goal difference, then goals scored.</p></div>
+      </div></div></section>${igBlock("Matchday clips on Instagram")}` },
+  gallery: { label: "Gallery", title: "Gallery", lede: "Training nights, matchdays and the people who make Lima FC.",
+    move: ["home-gallery"], extra: () => igBlock("See more on Instagram") },
+  leadership: { label: "Leadership", title: "Club leadership", lede: "The executive committee runs the club for its members and is elected at the annual general meeting.",
+    move: ["home-leadership"], extra: () => contactBlock("Contact the committee", "Questions about membership, dues or the tournament? Reach the club directly.") },
+  join: { label: "Join Lima FC", title: "Join Lima FC", lede: `Registration is ${naira(SITE.registrationFee)} one-off, then ${naira(SITE.monthlyDues)} a month. Training is every Thursday, 5–7 pm.`,
+    move: ["home-join"],
+    extra: () => `
+    <section class="extra light"><div class="wrap"><h2>How joining works</h2>
+      <ol class="steps">
+        <li><b>Register online</b><span>Fill in the form above. It takes about two minutes.</span></li>
+        <li><b>Pay your fees</b><span>${naira(SITE.registrationFee)} registration plus your first month’s ${naira(SITE.monthlyDues)} dues, on the <a href="${routeHref("dues")}" data-route="dues">Pay dues</a> page.</span></li>
+        <li><b>Get confirmed</b><span>The committee confirms your membership on WhatsApp.</span></li>
+        <li><b>Come to training</b><span>See you on Thursday, 5–7 pm.</span></li>
+      </ol></div></section>${contactBlock("Questions before you join?")}` },
+  dues: { label: "Pay dues", title: "Pay your dues", lede: `Monthly dues are ${naira(SITE.monthlyDues)}. New members also pay a one-off ${naira(SITE.registrationFee)} registration fee.`,
+    move: ["home-dues"],
+    extra: () => `
+    <section class="extra alt"><div class="wrap faq"><h2>Common questions</h2>
+      <details><summary>When are dues due?</summary><p>By the 5th of the month they cover. You can pay for several months at once.</p></details>
+      <details><summary>How do I get a receipt?</summary><p>After paying by transfer, tap “I’ve paid by bank transfer” and send your transfer receipt on WhatsApp. The treasurer confirms once the payment reaches the club account.</p></details>
+      <details><summary>What if I fall behind?</summary><p>Players more than two months behind may not be selected until their account is up to date. If money is tight, speak privately with the treasurer about a payment plan.</p></details>
+      <details><summary>Who checks payments?</summary><p>Glorious, our Treasurer, records every payment.</p></details>
+    </div></section>${contactBlock("Need help with a payment?")}` },
+  policy: { label: "Lima policy", title: "Lima policy", lede: "The rules every member agrees to when they join. They protect our players, our supporters and the good name of the club.",
+    move: ["home-policy"], extra: () => contactBlock("Questions about the policy?", "Speak to the Head of the Disciplinary Committee, the President, or message the club.") }
+};
+const ORDER = ["club", "news", "tournament", "gallery", "leadership", "join", "dues", "policy"];
+
+// point every route link at the right place for this version of the site
+document.querySelectorAll("[data-route]").forEach(a => a.setAttribute("href", routeHref(a.dataset.route)));
+
+{
+  const view = $("#pageView"), slot = $("#pageSlot"), extra = $("#pageExtra");
+  const homeParts = [$(".hero"), $("main")];
+  const markers = {};
+  let current = "home";
+  const extraCache = {};
+
+  function restore() {
+    [...slot.children].forEach(el => { const m = markers[el.id]; if (m) m.parentNode.insertBefore(el, m.nextSibling); });
+  }
+  function show(name, scrollTarget) {
+    const page = PAGES[name];
+    if (links.classList.contains("open")) menuBtn.click();
+    if (!page) {
+      if (current !== "home") { restore(); view.hidden = true; homeParts.forEach(el => el.hidden = false); document.body.classList.remove("on-page"); document.title = "Lima FC | Lima Football Club"; }
+      current = "home";
+      setCurrent("home");
+      const t = scrollTarget && document.getElementById(scrollTarget);
+      if (t && scrollTarget !== "top") requestAnimationFrame(() => t.scrollIntoView());
+      else window.scrollTo(0, 0);
+      onScroll();
+      return;
+    }
+    restore();
+    page.move.forEach(id => {
+      const el = document.getElementById(id); if (!el) return;
+      if (!markers[id]) { markers[id] = document.createComment(id); el.parentNode.insertBefore(markers[id], el); }
+      slot.appendChild(el);
+    });
+    extra.innerHTML = extraCache[name] || (extraCache[name] = page.extra());
+    extra.querySelectorAll("[data-route]").forEach(a => a.setAttribute("href", routeHref(a.dataset.route)));
+    if (typeof watchClips === "function") watchClips(extra);
+    $("#pageTitle").textContent = page.title;
+    $("#pageLede").textContent = page.lede;
+    $("#crumbHere").textContent = page.label;
+    const i = ORDER.indexOf(name), prev = ORDER[(i - 1 + ORDER.length) % ORDER.length], next = ORDER[(i + 1) % ORDER.length];
+    $("#pager").innerHTML = `
+      <a href="${routeHref(prev)}" data-route="${prev}"><span class="k">Previous</span><span class="v">${esc(PAGES[prev].label)}</span></a>
+      <a class="next" href="${routeHref(next)}" data-route="${next}"><span class="k">Next</span><span class="v">${esc(PAGES[next].label)}</span></a>`;
+    homeParts.forEach(el => el.hidden = true);
+    view.hidden = false;
+    document.body.classList.add("on-page");
+    document.title = page.title + " | Lima FC";
+    current = name;
+    setCurrent(name);
+    window.scrollTo(0, 0);
+    onScroll();
+  }
+  function setCurrent(name) {
+    document.querySelectorAll("#links a[data-route]").forEach(a => {
+      if (a.dataset.route === name) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+  }
+  function fromHash() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (PAGES[h]) show(h); else show("home", h || null);
+  }
+  if (MODE === "files") {
+    show(PAGES[START_PAGE] ? START_PAGE : "home", location.hash.slice(1) || null);
+  } else {
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  }
+}
+</script>
+</body>
+</html>
