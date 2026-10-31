@@ -96,6 +96,7 @@ p{margin:0 0 1em}
 .menu-btn span{display:block;height:2px;background:currentColor;margin:6px 0;transition:transform .2s}
 @media (max-width:1020px){
   .menu-btn{display:block}
+  .nav.solid{backdrop-filter:none;-webkit-backdrop-filter:none}
   .links{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:0;right:0;bottom:0;background:#000;flex-direction:column;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));gap:0;transform:translateX(100%);transition:transform .28s ease;overflow:auto}
   .links.open{transform:none}
   .links a{display:block;font-family:var(--display);font-size:2rem;font-weight:800;padding:12px 4px;border-bottom:1px solid #1f2a22}
