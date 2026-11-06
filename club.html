@@ -533,7 +533,7 @@ footer{background:#000;color:#DCE5DA;padding:70px 0 calc(40px + env(safe-area-in
   <div class="hero-media" id="heroMedia" aria-hidden="true">
     <video class="on" muted playsinline preload="auto" poster="assets/poster.webp" data-src="assets/hero-match.mp4" style="object-position:50% 60%"></video>
     <video muted playsinline preload="none" data-src="assets/hero-warmup.mp4" style="object-position:50% 62%"></video>
-    <video muted playsinline preload="none" data-src="assets/hero-fans.mp4" style="object-position:50% 52%"></video>
+    <video muted playsinline preload="none" data-src="assets/hero-training.mp4" style="object-position:50% 52%"></video>
   </div>
   <div class="wrap hero-body">
     <div>
@@ -582,7 +582,7 @@ footer{background:#000;color:#DCE5DA;padding:70px 0 calc(40px + env(safe-area-in
       </dl>
     </div>
     <div class="stack" id="stack">
-      <figure class="f1"><video class="loopvid" muted loop playsinline preload="none" poster="assets/still-fans.webp" data-src="assets/hero-fans.mp4" aria-label="Lima FC supporters watching from the stands"></video><figcaption>Our supporters on matchday</figcaption></figure>
+      <figure class="f1"><video class="loopvid" muted loop playsinline preload="none" poster="assets/still-training.webp" data-src="assets/hero-training.mp4" aria-label="Lima FC players in a training match"></video><figcaption>Training match on the pitch</figcaption></figure>
       <figure class="f2"><video class="loopvid" muted loop playsinline preload="none" poster="assets/still-warmup.webp" data-src="assets/hero-warmup.mp4" aria-label="Lima FC players warming up together on the pitch"></video><figcaption>Warm-up before kick-off</figcaption></figure>
     </div>
   </div>
@@ -786,6 +786,13 @@ const SITE = {
   registrationFee: 50000,   // one-off, new members
   monthlyDues: 10000,       // every member, per month
   news: [
+    { tag: "Tournament", tone: "green", date: "6 Nov 2026", img: "assets/still-attack.webp", vid: "assets/clip-attack.mp4", alt: "Lima FC players on the attack during the tournament",
+      title: "City Boys go top with a 2–0 win over Bugatti Boyz",
+      body: "Matchday 2 brought a new leader. City Boys beat Bugatti Boyz 2–0 to go top of the table on 4 points, while Phantom FC and Titanium FC played out a tight 0–0 draw.",
+      more: "City Boys are unbeaten after two games with a goal difference of +2, and Bugatti Boyz drop to second on 3 points. Phantom FC are also yet to lose after two draws, and Titanium FC picked up their first point of the tournament. With four matchdays to go, just three points separate first from last. Matchday 3 is on Thursday 12 November: Phantom FC take on Bugatti Boyz at 5:10 pm, followed by City Boys against Titanium FC at 6:10 pm." },
+    { tag: "Supporters", tone: "gold", date: "6 Nov 2026", img: "assets/still-supporters.webp", alt: "Lima FC supporters watching from the stands",
+      title: "Thank you to our supporters",
+      body: "The players feel it every time you turn up. Thank you to everyone who has come out to cheer during the tournament. See you on Thursday 12 November for Matchday 3, from 5:10 pm." },
     { tag: "Tournament", tone: "green", date: "30 Oct 2026", img: "assets/still-play.webp", vid: "assets/clip-play.mp4", alt: "Players competing for the ball during the tournament",
       title: "Bugatti Boyz top the table after matchday 1",
       body: "The 2nd edition of the Lima FC end-of-year tournament is under way. Bugatti Boyz edged Titanium FC 1–0 to take an early lead, while Phantom FC and City Boys shared the points in a 1–1 draw.",
@@ -810,8 +817,8 @@ const SITE = {
         { time: "5:10 pm", home: "Phantom FC",   away: "City Boys",   score: [1, 1] },
         { time: "6:10 pm", home: "Bugatti Boyz", away: "Titanium FC", score: [1, 0] } ] },
       { md: 2, date: "Thu 5 Nov", games: [
-        { time: "5:10 pm", home: "City Boys",   away: "Bugatti Boyz" },
-        { time: "6:10 pm", home: "Titanium FC", away: "Phantom FC" } ] },
+        { time: "5:10 pm", home: "City Boys",   away: "Bugatti Boyz", score: [2, 0] },
+        { time: "6:10 pm", home: "Titanium FC", away: "Phantom FC",  score: [0, 0] } ] },
       { md: 3, date: "Thu 12 Nov", games: [
         { time: "5:10 pm", home: "Phantom FC", away: "Bugatti Boyz" },
         { time: "6:10 pm", home: "City Boys",  away: "Titanium FC" } ] },
@@ -829,11 +836,12 @@ const SITE = {
   // Starter items are clips from the club's own videos (src is the still shown before the clip loads). Admins add more from the Gallery section.
   gallery: [
     { src: "assets/still-dribble.webp",  vid: "assets/clip-dribble.mp4",  cap: "Taking on the defence", shape: "wide" },
-    { src: "assets/still-fans.webp",     vid: "assets/hero-fans.mp4",     cap: "Supporters in the stands", shape: "tall" },
+    { src: "assets/still-training.webp",     vid: "assets/hero-training.mp4",     cap: "Training match", shape: "tall" },
     { src: "assets/still-warmup.webp",   vid: "assets/hero-warmup.mp4",   cap: "Warm-up run", shape: "tall" },
     { src: "assets/still-play.webp",     vid: "assets/clip-play.mp4",     cap: "Building from the back", shape: "wide" },
     { src: "assets/still-attack.webp",   vid: "assets/clip-attack.mp4",   cap: "On the attack", shape: "wide" },
-    { src: "assets/still-sideline.webp", vid: "assets/clip-sideline.mp4", cap: "Watching from the sideline", shape: "wide" }
+    { src: "assets/still-sideline.webp", vid: "assets/clip-sideline.mp4", cap: "Watching from the sideline", shape: "wide" },
+    { src: "assets/still-supporters.webp", cap: "Supporters in the stands", shape: "wide" }
   ],
   leaders: [
     // add photo: "assets/leader-name.webp" to any leader to show their picture in the shield
@@ -1030,7 +1038,7 @@ links.addEventListener("click", e => { if (e.target.closest("a") && links.classL
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 {
   const vids = [...document.querySelectorAll("#heroMedia video")];
-  const labels = ["Matchday", "Warm-up", "In the stands"];
+  const labels = ["Matchday", "Warm-up", "Training"];
   const reel = $("#reel"), pp = $("#pp");
   const dots = vids.map((_, i) => { const d = document.createElement("button"); d.className = "dot"; d.setAttribute("aria-label", "Show clip " + (i + 1) + ": " + labels[i]); d.innerHTML = "<i></i>"; reel.insertBefore(d, pp); d.addEventListener("click", () => show(i, true)); return d; });
   let cur = -1, paused = reduced;
