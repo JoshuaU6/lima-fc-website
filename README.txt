@@ -20,6 +20,5 @@ Updating content
   (or ask Claude to rebuild the site for you).
 
 Before going live
-  1. Replace YOUR-DOMAIN in the og:image / twitter:image tags with your domain
-     (for example https://limafc.live).
+  1. Share-preview tags (og:url, og:image, twitter:image) use https://www.limafc.live.
   2. Add your Paystack or Flutterwave payment-page link to payments.onlineUrl.
